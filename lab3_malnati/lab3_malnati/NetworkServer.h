@@ -11,7 +11,9 @@ public:
 	NetworkServer();
 	~NetworkServer();
 protected:
-	vector<unique_ptr<SharedEditor>> vServers;
-
+	vector<unique_ptr<SharedEditor>> vClients;
+public:
+	int Connect(unique_ptr<SharedEditor> pClient);
+	int Disconnect(unique_ptr<SharedEditor> pClient);
 };
 
