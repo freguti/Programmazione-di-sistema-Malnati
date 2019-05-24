@@ -25,6 +25,7 @@ public:
 	int GetSiteid() { return _siteid; };
 	vector<char> GetFractional(int index);
 	float TranslateFractional(vector<char> index);
+	void Process(const Message &M);
 };
 #endif
 

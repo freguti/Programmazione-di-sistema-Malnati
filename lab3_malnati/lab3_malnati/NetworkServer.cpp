@@ -53,3 +53,24 @@ bool NetworkServer::Check_code(int unique_code)
 	}
 	return false;
 }
+
+void NetworkServer::Send(const Message& M)
+{
+	vMessage.insert(vMessage.end(), M);
+}
+
+void NetworkServer::DispatchMessages()
+{
+	for (auto tmp = vMessage.begin(); tmp < vMessage.end(); )//non metto l'incremento
+	{
+		for (auto tmp2 = vEditor.begin(); tmp2 < vEditor.end(); tmp2++)
+		{
+			shared_ptr<SharedEditor> Stmp = *tmp2;
+			if (tmp->siteid != Stmp->GetSiteid()) //lo invio a tutti quelli diversi dal mittente
+			{
+				Stmp->Process(*tmp);
+			}
+		}
+		vMessage.erase(tmp++);
+	}
+}

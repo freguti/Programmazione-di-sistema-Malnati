@@ -51,3 +51,8 @@ float SharedEditor::TranslateFractional(vector<char> index)
 	}
 	return val;
 }
+
+void Process(const Message &M)
+{
+
+}
