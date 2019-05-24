@@ -1,9 +1,13 @@
-#pragma once
+#ifndef NETWORK
+#define NETWORK
 #include "SharedEditor.h"
+
 #include <vector>
 #include <memory>
 
 using namespace std;
+
+class SharedEditor;
 
 class NetworkServer
 {
@@ -11,9 +15,11 @@ public:
 	NetworkServer();
 	~NetworkServer();
 protected:
-	vector<unique_ptr<SharedEditor>> vClients;
+	vector<shared_ptr<SharedEditor>> vEditor;
 public:
-	int Connect(unique_ptr<SharedEditor> pClient);
-	int Disconnect(unique_ptr<SharedEditor> pClient);
+	int Connect(weak_ptr<SharedEditor> pClient);
+	void Disconnect(weak_ptr<SharedEditor> pClient);
+	bool Check_code(int unique_code);
 };
+#endif
 

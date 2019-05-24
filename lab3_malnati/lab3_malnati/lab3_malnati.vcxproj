@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Message.h" />
     <ClInclude Include="NetworkServer.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="SharedEditor.h" />
@@ -158,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lab3_malnati.cpp" />
+    <ClCompile Include="Message.cpp" />
     <ClCompile Include="NetworkServer.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
