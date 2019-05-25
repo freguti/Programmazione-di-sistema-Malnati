@@ -10,6 +10,13 @@ using namespace std;
 
 class SharedEditor;
 
+enum action
+{
+	eTypeNull = 0,
+	eTypeWrite,
+	eTypeDelete
+};
+
 class NetworkServer
 {
 public:

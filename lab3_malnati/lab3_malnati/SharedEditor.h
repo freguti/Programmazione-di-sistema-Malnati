@@ -28,6 +28,7 @@ public:
 	float TranslateFractional(vector<char> index);
 	void Process(const Message &M);
 	void LocalInsert(int index, char value);
+	bool Check_code(int unique_code);
 };
 #endif
 
