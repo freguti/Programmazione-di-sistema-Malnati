@@ -17,7 +17,7 @@ public:
 	~NetworkServer();
 protected:
 	vector<shared_ptr<SharedEditor>> vEditor;
-	vector<*Message> vMessage;
+	vector<Message> vMessage;
 public:
 	int Connect(weak_ptr<SharedEditor> pClient);
 	void Disconnect(weak_ptr<SharedEditor> pClient);

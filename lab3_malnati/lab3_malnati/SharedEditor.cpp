@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "SharedEditor.h"
-
+#include <iostream>
 
 SharedEditor::SharedEditor(NetworkServer& server) : _server(const_cast <NetworkServer&>(server))
 {
@@ -18,7 +18,7 @@ vector<char> SharedEditor::GetFractional(int index)
 {
 	for (auto tmp = _symbols.begin(); tmp < _symbols.end(); tmp++)
 	{
-		if (tmp->index == index)
+		if (tmp->uindex == index)
 		{
 			return tmp->fIndex;
 		}
@@ -52,7 +52,29 @@ float SharedEditor::TranslateFractional(vector<char> index)
 	return val;
 }
 
-void Process(const Message &M)
+void SharedEditor::Process(const Message &M)
 {
+	switch (M.action)
+	{
+	case 1: //add
+		break;
+	case 2: //delete
+		break;
+	default:
+		cout << "errore\n";
+	}
+}
 
+void SharedEditor::LocalInsert(int index, char value)
+{
+	if (_symbols[index].uindex == 0)
+	{
+		//non esiste l'elemento
+		_symbols[index].uindex = _symbols[index].uindex;
+		//NetworkServer::Check_code(_symbols[index].uindex);
+	}
+	else
+	{
+
+	}
 }

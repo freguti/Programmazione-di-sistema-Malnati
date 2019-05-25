@@ -4,6 +4,7 @@
 #include "NetworkServer.h"
 #include "Symbol.h"
 #include <vector>
+#include "Message.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ public:
 	vector<char> GetFractional(int index);
 	float TranslateFractional(vector<char> index);
 	void Process(const Message &M);
+	void LocalInsert(int index, char value);
 };
 #endif
 

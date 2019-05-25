@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SYMBOL
+#define SYMBOL
 #include <vector>
 
 using namespace std;
@@ -6,10 +7,10 @@ using namespace std;
 class Symbol
 {
 public:
-	Symbol();
+	Symbol() { uindex = 0; };
 	~Symbol();
 	char symbol;
 	vector<char> fIndex;
-	int index;
+	int uindex; //indice univoco
 };
-
+#endif

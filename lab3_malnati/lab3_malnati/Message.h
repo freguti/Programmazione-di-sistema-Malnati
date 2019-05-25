@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MESSAGE
+#define MESSAGE
 #include "Symbol.h"
 class Message
 {
@@ -7,6 +8,6 @@ public:
 	~Message();
 	int siteid;
 	Symbol symbol;
-	int action; //0-add 1-delete
+	int action; //1->add 2->delete
 };
-
+#endif
