@@ -23,11 +23,11 @@ public:
 	NetworkServer();
 	~NetworkServer();
 protected:
-	vector<shared_ptr<SharedEditor>> vEditor;
+	vector<SharedEditor*> vEditor;
 	vector<Message> vMessage;
 public:
-	int Connect(weak_ptr<SharedEditor> pClient);
-	void Disconnect(weak_ptr<SharedEditor> pClient);
+	int Connect(SharedEditor* pClient);
+	void Disconnect(SharedEditor* pClient);
 	bool Check_code(int unique_code);
 	void Send(const Message& M);
 	void DispatchMessages();

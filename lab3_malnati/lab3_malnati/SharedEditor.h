@@ -24,8 +24,8 @@ private:
 	int _counter;
 public:
 	int GetSiteid() { return _siteid; };
-	vector<char> GetFractional(int index);
-	float TranslateFractional(vector<char> index);
+	//vector<unsigned char> GetFractional(int index);
+	//float TranslateFractional(vector<unsigned char> index);
 	void Process(const Message &M);
 	void LocalInsert(int index, char value);
 	bool Check_code(int unique_code);

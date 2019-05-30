@@ -10,7 +10,7 @@ public:
 	Symbol() { uindex = 0; };
 	~Symbol();
 	char symbol;
-	vector<char> fIndex;
+	vector<unsigned char> fIndex;
 	int uindex; //indice univoco
 };
 #endif

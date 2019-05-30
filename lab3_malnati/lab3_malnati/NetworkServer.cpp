@@ -7,10 +7,16 @@ NetworkServer::NetworkServer()
 
 
 NetworkServer::~NetworkServer()
-{
+{ 
+	//shared_ptr<SharedEditor> Tmp;
+	//for (auto tmp = vEditor.begin(); tmp < vEditor.end(); tmp++)
+	//{
+	//	Tmp = *tmp;
+	//	this->Disconnect(Tmp);
+	//}
 }
 
-int NetworkServer::Connect(weak_ptr<SharedEditor> pEditor)
+int NetworkServer::Connect(SharedEditor* pEditor)
 {
 	int unique_code = rand() * 10000;
 	int i = 0;
@@ -20,28 +26,27 @@ int NetworkServer::Connect(weak_ptr<SharedEditor> pEditor)
 		if (i++ >= 1000)
 			return -1;
 	}
-	vEditor.insert(vEditor.end(), pEditor.lock());
+	vEditor.insert(vEditor.end(), pEditor);
 	return unique_code;
 }
 
-void NetworkServer::Disconnect(weak_ptr<SharedEditor> pEditor)
+void NetworkServer::Disconnect(SharedEditor* pEditor)
 {
-	shared_ptr<SharedEditor> editor;
+	SharedEditor* editor;
 	for (auto tmp = vEditor.begin(); tmp < vEditor.end(); tmp++)
 	{
 		editor = *tmp;
-		if (editor->GetSiteid() == pEditor.lock()->GetSiteid())
+		if (editor->GetSiteid() == pEditor->GetSiteid())
 		{
-			editor.reset();
 			vEditor.erase(tmp);
-			break;
+			return;
 		}
 	}
 }
 
 bool NetworkServer::Check_code(int unique_code)
 {
-	shared_ptr<SharedEditor> editor;
+	SharedEditor* editor;
 	for (auto tmp = vEditor.begin(); tmp < vEditor.end(); tmp++)
 	{
 		editor = *tmp;
@@ -60,16 +65,16 @@ void NetworkServer::Send(const Message& M)
 
 void NetworkServer::DispatchMessages()
 {
-	for (auto tmp = vMessage.begin(); tmp < vMessage.end(); )//non metto l'incremento
+	for (auto tmp = vMessage.begin(); tmp < vMessage.end(); tmp = vMessage.begin())//non metto l'incremento
 	{
 		for (auto tmp2 = vEditor.begin(); tmp2 < vEditor.end(); tmp2++)
 		{
-			shared_ptr<SharedEditor> Stmp = *tmp2;
+			SharedEditor* Stmp = *tmp2;
 			if (tmp->siteid != Stmp->GetSiteid()) //lo invio a tutti quelli diversi dal mittente
 			{
 				Stmp->Process(*tmp);
 			}
 		}
-		vMessage.erase(tmp++);
+		vMessage.erase(tmp);
 	}
 }
