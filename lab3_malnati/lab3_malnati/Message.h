@@ -9,5 +9,6 @@ public:
 	int siteid;
 	Symbol symbol;
 	int action; //1->add 2->delete
+	int uindex;
 };
 #endif

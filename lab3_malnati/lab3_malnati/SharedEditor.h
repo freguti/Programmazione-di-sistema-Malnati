@@ -29,6 +29,8 @@ public:
 	void Process(const Message &M);
 	void LocalInsert(int index, char value);
 	bool Check_code(int unique_code);
+	void LocalErase(int index);
+	string ToString();
 };
 #endif
 

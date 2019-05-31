@@ -73,9 +73,10 @@ void SharedEditor::Process(const Message &M)
 	{
 		for (auto tmp = _symbols.begin(); tmp < _symbols.end(); tmp++)
 		{
-			if (tmp->uindex == M.symbol.uindex)
+			if (tmp->uindex == M.uindex)
 			{
 				_symbols.erase(tmp);
+				return;
 			}
 		}
 	}
@@ -142,6 +143,18 @@ void SharedEditor::LocalInsert(int index, char value)
 	_server.Send(M);
 }
 
+void SharedEditor::LocalErase(int index)
+{
+	auto tmp = _symbols.begin();
+	tmp += index;
+	Message M;
+	M.siteid = this->GetSiteid();
+	M.action = eTypeDelete;
+	M.uindex = tmp->uindex;
+	_server.Send(M);
+	_symbols.erase(tmp);
+}
+
 bool SharedEditor::Check_code(int unique_code)
 {
 	Symbol symb;
@@ -154,4 +167,16 @@ bool SharedEditor::Check_code(int unique_code)
 		}
 	}
 	return false;
+}
+
+string SharedEditor::ToString()
+{
+	string converted("");
+	string::iterator it;
+	for (auto tmp = _symbols.begin(); tmp < _symbols.end(); tmp++)
+	{
+		it = converted.end();
+		converted.insert(it, tmp->symbol);
+	}
+	return converted;
 }
