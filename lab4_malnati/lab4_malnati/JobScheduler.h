@@ -2,6 +2,9 @@
 #include <list>
 #include <vector>
 #include "Job.h"
+#include <thread>
+#include <mutex>
+
 class JobScheduler
 {
 public:
